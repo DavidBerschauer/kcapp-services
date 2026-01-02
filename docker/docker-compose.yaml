@@ -5,7 +5,7 @@ services:
     restart: unless-stopped
     image: nginx
     ports:
-      - 80:80
+      - 8080:80
     depends_on:
       - frontend
     volumes:
@@ -21,8 +21,8 @@ services:
     expose:
       - ${MYSQL_LISTEN_PORT}
     volumes:
-      - ./db/config:/config
-      - ./db/data:/var/lib/mysql
+      - kcapp-db-config:/config
+      - kcapp-db-data:/var/lib/mysql
     environment:
       MYSQL_DATABASE: ${MYSQL_DATABASE}
       MYSQL_USER: ${MYSQL_USER}
@@ -74,3 +74,7 @@ services:
       - KCAPP_API
       - DISK_CACHE
       - KCAPP_API_PATH
+      
+volumes:
+  kcapp-db-config:
+  kcapp-db-data:
